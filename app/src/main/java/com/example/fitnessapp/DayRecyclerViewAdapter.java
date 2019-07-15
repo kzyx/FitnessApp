@@ -9,39 +9,36 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
-public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
+public class DayRecyclerViewAdapter extends RecyclerView.Adapter<DayViewHolder> {
 
     //List<WeightedSet> list;
-    WeightedExerciseInstance wei;
+    WorkoutDay wd;
     Context context;
 
-    public WERecyclerViewAdapter(WeightedExerciseInstance wei, Context context) {
-        this.wei = wei;
+    public DayRecyclerViewAdapter(WorkoutDay wd, Context context) {
+        this.wd = wd;
         this.context = context;
     }
 
 
     @Override
-    public WEViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DayViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Inflate the layout, initialize the View Holder
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.we_rowlayout, parent, false);
-        WEViewHolder holder = new WEViewHolder(v);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.we_exerciselayout, parent, false);
+        DayViewHolder holder = new DayViewHolder(v);
         return holder;
 
     }
 
     @Override
-    public void onBindViewHolder(WEViewHolder holder, int position) {
+    public void onBindViewHolder(DayViewHolder holder, int position) {
 
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
         //holder.cv.setText(list.get(position).title);
-        double w = wei.get(position).getWeight();
-        holder.listingNum.setText(String.format("%d", position + 1));
-        holder.weight.setText(String.format("%.2f", w));
-        holder.repetition.setText(Integer.toString(wei.get(position).getRepetitions()));
-
+        holder.exerciseName.setText(wd.get(position).getExercise().getName());
+        holder.muscle.setText(wd.get(position).getExercise().getTargetedMuscle().toString().toLowerCase());
+        //TODO: FIX THIS PASSING STUFF
+        // holder.exerciseView.setAdapter(new WERecyclerViewAdapter(new Weight));
         //animate(holder);
 
     }
@@ -49,7 +46,7 @@ public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
     @Override
     public int getItemCount() {
         //returns the number of elements the RecyclerView will display
-        return wei.size();
+        return wd.size();
     }
 
     @Override
@@ -58,15 +55,15 @@ public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
     }
 
     // Insert a new item to the RecyclerView on a predefined position
-    public void insert(int position, WeightedSet weightedSet) {
-        wei.add(position, weightedSet);
+    public void insert(int position, ExerciseInstance ei) {
+        wd.add(position, ei);
         notifyItemInserted(position);
     }
 
     // Remove a RecyclerView item containing a specified Data object
-    public void remove(WeightedSet weightedSet) {
-       // int position = list.indexOf(weightedSet);
-        int removedIndex = wei.removeSet(weightedSet);
+    public void remove(ExerciseInstance ei) {
+        // int position = list.indexOf(weightedSet);
+        int removedIndex = wd.remove(ei);
         notifyItemRemoved(removedIndex);
     }
 

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 //        Bundle b = new Bundle();
 //        b.putInt("type", 0); //Your id
 //        intent.putExtras(b); //Put your id to your next Intent
-        Intent intent = new Intent(this, WEModify.class);
+        Intent intent = new Intent(this, DayActivity.class);
         startActivity(intent);
     }
 }

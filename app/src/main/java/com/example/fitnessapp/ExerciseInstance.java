@@ -3,7 +3,7 @@ package com.example.fitnessapp;
 import java.sql.Time;
 import java.util.Calendar;
 
-public class ExerciseInstance {
+public abstract class ExerciseInstance {
 
     private Exercise exercise;
     private Time creationTime;
@@ -22,4 +22,7 @@ public class ExerciseInstance {
     public Exercise getExercise() {
         return exercise;
     }
+
+    public abstract void addSet(WeightedSet ws);
+    public abstract int removeSet(WeightedSet ws);
 }
