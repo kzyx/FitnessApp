@@ -17,6 +17,7 @@ public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
     WeightedExerciseInstance wei;
     Context context;
 
+
     public WERecyclerViewAdapter(WeightedExerciseInstance wei, Context context) {
         this.wei = wei;
         this.context = context;
@@ -69,6 +70,7 @@ public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
         int removedIndex = wei.removeSet(weightedSet);
         notifyItemRemoved(removedIndex);
     }
+
 
 
 

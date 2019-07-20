@@ -8,6 +8,7 @@ public class WorkoutDay {
 
     LocalDate date;
     List<ExerciseInstance> exerciseInstances;
+    List<WERecyclerViewAdapter> recyclerViewAdapters;
 
     WorkoutDay(List<ExerciseInstance> exerciseInstances) {
         date = LocalDate.now();
@@ -16,6 +17,7 @@ public class WorkoutDay {
 
     public void add(ExerciseInstance ei){
         exerciseInstances.add(ei);
+        //recyclerViewAdapters.add(new WERecyclerViewAdapter(ei), getApplicationContext());
     }
 
     public void add(int i, ExerciseInstance ei) {

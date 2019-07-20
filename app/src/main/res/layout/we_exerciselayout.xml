@@ -3,7 +3,7 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="0dp"
+    android:layout_marginBottom="24dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
@@ -13,7 +13,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="1dp">
+        android:clipToPadding="false"
+        android:padding="1dp"
+        android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/exerciseNameText"
@@ -38,22 +40,17 @@
             android:text="muscleTargeted"
             android:textSize="15dp" />
 
-        <android.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_above="@+id/reps"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="-30dp"
-            android:background="?android:attr/listDivider" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/exerciseView"
             android:layout_width="350dp"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="0dp"
             android:layout_marginTop="37dp"
-            android:layout_marginEnd="7dp" />
+            />
     </RelativeLayout>
 
 

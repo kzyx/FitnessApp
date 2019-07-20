@@ -75,6 +75,11 @@ public class WeightedExerciseInstance extends ExerciseInstance {
 //        }
     }
 
+    public void removeLastSet() {
+        if (weightedSets.size() > 0)
+            remove(weightedSets.size() - 1);
+    }
+
     public void switchIndices(int i, int j) {
         Collections.swap(weightedSets, i, j);
     }

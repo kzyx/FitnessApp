@@ -1,12 +1,15 @@
 package com.example.fitnessapp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DayRecyclerViewAdapter extends RecyclerView.Adapter<DayViewHolder> {
@@ -14,10 +17,14 @@ public class DayRecyclerViewAdapter extends RecyclerView.Adapter<DayViewHolder> 
     //List<WeightedSet> list;
     WorkoutDay wd;
     Context context;
+    int selectedIndex;
+    GridLayoutManager glm;
 
-    public DayRecyclerViewAdapter(WorkoutDay wd, Context context) {
+
+    public DayRecyclerViewAdapter(WorkoutDay wd, Context context, RecyclerView rv) {
         this.wd = wd;
         this.context = context;
+        selectedIndex = RecyclerView.NO_POSITION;
     }
 
 
@@ -27,20 +34,36 @@ public class DayRecyclerViewAdapter extends RecyclerView.Adapter<DayViewHolder> 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.we_exerciselayout, parent, false);
         DayViewHolder holder = new DayViewHolder(v);
         return holder;
-
     }
 
     @Override
-    public void onBindViewHolder(DayViewHolder holder, int position) {
-
+    public void onBindViewHolder(DayViewHolder holder, final int position) {
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
         //holder.cv.setText(list.get(position).title);
         holder.exerciseName.setText(wd.get(position).getExercise().getName());
         holder.muscle.setText(wd.get(position).getExercise().getTargetedMuscle().toString().toLowerCase());
         //TODO: FIX THIS PASSING STUFF
-        // holder.exerciseView.setAdapter(new WERecyclerViewAdapter(new Weight));
-        //animate(holder);
+        holder.exerciseView.setAdapter(new WERecyclerViewAdapter((WeightedExerciseInstance) wd.get(position), context));
+        glm = new GridLayoutManager(context, 3);
+        holder.exerciseView.setLayoutManager(glm);
 
+        if(selectedIndex == position) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#000000"));
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+            //holder.exerciseView setBackgroundColor(Color.parseColor("#ffffff"));
+        }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedIndex = position;
+                notifyDataSetChanged();
+
+            }
+        });
+        //animate(holder);
+//        if (position == selectedIndex) markSelectedIndex(holder, position);
     }
 
     @Override
@@ -67,6 +90,9 @@ public class DayRecyclerViewAdapter extends RecyclerView.Adapter<DayViewHolder> 
         notifyItemRemoved(removedIndex);
     }
 
+    public ExerciseInstance getSelectedExercise() {
+        return wd.get(selectedIndex);
+    }
 
 
 }

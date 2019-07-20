@@ -1,5 +1,6 @@
 package com.example.fitnessapp;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,9 +13,6 @@ public class DayViewHolder extends RecyclerView.ViewHolder {
     TextView exerciseName;
     TextView muscle;
     RecyclerView exerciseView;
-//    TextView weight;
-//    TextView repetition;
-//    TextView listingNum;
 
     DayViewHolder(View itemView) {
         super(itemView);
