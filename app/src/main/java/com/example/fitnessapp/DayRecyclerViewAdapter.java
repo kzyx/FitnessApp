@@ -5,16 +5,11 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
-import android.widget.TextView;
-
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DayRecyclerViewAdapter extends RecyclerView.Adapter<DayViewHolder> {
 
-    //List<WeightedSet> list;
     WorkoutDay wd;
     Context context;
     int selectedIndex;
@@ -62,8 +57,6 @@ public class DayRecyclerViewAdapter extends RecyclerView.Adapter<DayViewHolder> 
 
             }
         });
-        //animate(holder);
-//        if (position == selectedIndex) markSelectedIndex(holder, position);
     }
 
     @Override
@@ -92,6 +85,11 @@ public class DayRecyclerViewAdapter extends RecyclerView.Adapter<DayViewHolder> 
 
     public ExerciseInstance getSelectedExercise() {
         return wd.get(selectedIndex);
+    }
+
+    public void removeLastItem() {
+        if (wd.size() >= 1)
+            wd.remove(wd.get(wd.size() - 1));
     }
 
 

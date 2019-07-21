@@ -14,7 +14,7 @@
         />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navSettings"
         android:icon="@drawable/ic_custom_settings_button"
         android:title="Settings" />
 

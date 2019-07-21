@@ -2,6 +2,7 @@ package com.example.fitnessapp;
 
 import com.example.fitnessapp.ExerciseEnum.Muscle;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
@@ -18,8 +19,30 @@ public class ExerciseMap {
     }
 
     public void addExercise(Exercise exercise) {
-        TreeSet<Exercise> exercises = exerciseMap.get(exercise.getTargetedMuscle());
-        exercises.add(exercise);
+        if (!exerciseMap.get(exercise.getTargetedMuscle()).contains(exercise)) {
+            TreeSet<Exercise> exercises = exerciseMap.get(exercise.getTargetedMuscle());
+            exercises.add(exercise);
+        }
+    }
+
+    public ArrayList<String> getExercisesStringList(int position) {
+//        ExerciseEnum.Muscle em = ExerciseEnum.Muscle
+        ArrayList<Exercise> curr = new ArrayList<>(exerciseMap.get(ExerciseEnum.Muscle.values()[position]));
+        ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i < curr.size(); i++) {
+            result.add(curr.get(i).getName());
+        }
+        return result;
+    }
+
+    public ArrayList<Exercise> getExerciseList(ExerciseEnum.Muscle muscle) {
+        ArrayList<Exercise> returnSet = new ArrayList<>();
+        TreeSet<Exercise> allExercises = exerciseMap.get(muscle);
+
+        for (Exercise e : allExercises) {
+            returnSet.add(e);
+        }
+        return returnSet;
     }
 
     public TreeSet<Exercise> getExerciseSet() {
@@ -32,9 +55,9 @@ public class ExerciseMap {
         return returnSet;
     }
 
-    public TreeSet<String> getTargetedMuscleStrings() {
+    public ArrayList<String> getTargetedMuscleStrings() {
         Set<Muscle> allTargetedMuscles = exerciseMap.keySet();
-        TreeSet<String> returnSet = new TreeSet<>();
+        ArrayList<String> returnSet = new ArrayList<>();
         for (Muscle t : allTargetedMuscles) {
             returnSet.add(t.toString().substring(0,1).toUpperCase() +
                               t.toString().substring(1).toLowerCase());

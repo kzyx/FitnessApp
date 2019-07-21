@@ -1,8 +1,8 @@
 package com.example.fitnessapp;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
+
+import android.content.Intent;
 import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -12,22 +12,27 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.format.DateFormat;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
+import android.widget.Toast;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.example.fitnessapp.ExerciseType.WEIGHTED;
 
@@ -44,6 +49,10 @@ public class DayActivity extends AppCompatActivity {
     TextInputLayout repetitionInput;
     Button addSetButton;
     Button removeSetButton;
+    BottomNavigationView bottomNav;
+    PopupWindow popupExercise;
+    ListView popupLV;
+    boolean pickingMuscle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,9 @@ public class DayActivity extends AppCompatActivity {
         ExerciseInstance ei2 = new WeightedExerciseInstance(e2);
         ei2.addSet(new WeightedSet(e, 27, 14));
 
+        ExerciseInstance ei3 = new WeightedExerciseInstance(e2);
+        ei3.addSet(new WeightedSet(e2, 10, 10));
+
         for (int i = 0; i < 10; i++) {
             ei.addSet(new WeightedSet(e, 99, 18));
         }
@@ -69,10 +81,17 @@ public class DayActivity extends AppCompatActivity {
         lei.add(ei2);
         lei.add(ei);
         lei.add(ei);
+//        lei.add(ei3);
 
         wd = new WorkoutDay(lei);
 
         setContentView(R.layout.activity_day);
+
+        dayRecyclerView = findViewById(R.id.exerciseView);
+        adapter = new DayRecyclerViewAdapter(wd, getApplication(), dayRecyclerView);
+        dayRecyclerView.setAdapter(adapter);
+        myManager = new GridLayoutManager(this, 1);
+        dayRecyclerView.setLayoutManager(myManager);
 
 
 
@@ -103,11 +122,91 @@ public class DayActivity extends AppCompatActivity {
                 }
             }
         });
-//        weRecyclerView = findViewById(R.id.weRecyclerView);
-//        title = findViewById(R.id.textView);
 
-        //title.setText(wei.getExercise().getName().toLowerCase());
-        dayRecyclerView = findViewById(R.id.exerciseView);
+        bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                if (menuItem.equals(bottomNav.getMenu().getItem(0))) {
+                    pickingMuscle = !pickingMuscle;
+
+                    LayoutInflater layoutInflater = (LayoutInflater) getApplication().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    ViewGroup container  = (ViewGroup) layoutInflater.inflate(R.layout.muscle_popup,null);
+
+                    popupExercise = new PopupWindow(container,800,1300,true);
+                    popupLV = container.findViewById(R.id.exerciseLV);
+
+                    if (pickingMuscle) {
+                        final List<String> enumNames = Stream.of(ExerciseEnum.Muscle.values())
+                                .map(Enum::name)
+                                .collect(Collectors.toList());
+                        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(DayActivity.this, android.R.layout.simple_list_item_1, enumNames);
+                        popupLV.setAdapter(arrayAdapter1);
+                        popupLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Toast.makeText(DayActivity.this, enumNames.get(i), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        popupLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                                    long id) {
+                                ExerciseEnum ee = new ExerciseEnum();
+                                ExerciseMap myExerciseMap = ee.getExerciseMap();
+                                System.out.println(position);
+                                List<Exercise> exerList = myExerciseMap.getExerciseList(ExerciseEnum.Muscle.values()[position]);
+                                List<String> exerStringList = myExerciseMap.getExercisesStringList(position);
+                                ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(DayActivity.this, android.R.layout.simple_list_item_1, exerStringList);
+                                popupLV.setAdapter(arrayAdapter2);
+                                popupLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                        Toast.makeText(DayActivity.this, exerStringList.get(i), Toast.LENGTH_SHORT).show();
+                                        wd.add(new WeightedExerciseInstance(exerList.get(i)));
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    else {
+
+                    }
+
+                    pickingMuscle = !pickingMuscle;
+
+                    popupExercise.showAsDropDown(findViewById(R.id.bottomNav));
+                }
+                else if (menuItem.equals(bottomNav.getMenu().getItem(1))) {
+                    adapter.removeLastItem();
+                    adapter.notifyDataSetChanged();
+                } else if (menuItem.equals(bottomNav.getMenu().getItem(2))) {
+                    // TODO
+                }
+                return true;
+            }
+        });
+
+
+//        news1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                layoutInflater = (LayoutInflater) getApplication().getSystemService(LAYOUT_INFLATER_SERVICE);
+//                ViewGroup container  = (ViewGroup) layoutInflater.inflate(R.layout.news,null);
+//
+//                popupWindow = new PopupWindow(container,800,1300,true);
+//                popupWindow.showAsDropDown(news1);
+//                container.setOnTouchListener(new View.OnTouchListener() {
+//                    @Override
+//                    public boolean onTouch(View view, MotionEvent motionEvent) {
+//                        popupWindow.dismiss();
+//                        return false;
+//                    }
+//                });
+//            }
+//        });
+
         relativeLayout = findViewById(R.id.relativelayout1);
         relativeLayout.setBackgroundColor(Color.parseColor("#ede1d1"));
         datePickerButton = findViewById(R.id.datePickerButton);
@@ -137,13 +236,6 @@ public class DayActivity extends AppCompatActivity {
         });
 
 
-        adapter = new DayRecyclerViewAdapter(wd, getApplication(), dayRecyclerView);
-        dayRecyclerView.setAdapter(adapter);
-        myManager = new GridLayoutManager(this, 1);
-        dayRecyclerView.setLayoutManager(myManager);
-
-
-
         //addButton = findViewById(R.id.addbutton);
 //        addButton.setOnClickListener(new View.OnClickListener() {
 //
@@ -170,6 +262,11 @@ public class DayActivity extends AppCompatActivity {
                         .append(day).append("-")
                         .append(month + 1).append("-")
                         .append(year).append(" "));
+    }
+
+    public void openAddMenu() {
+        Intent intent = new Intent(this, DayActivity.class);
+        startActivity(intent);
     }
 
 }
