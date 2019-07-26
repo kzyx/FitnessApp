@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class WeightedExerciseInstance extends ExerciseInstance {
-
     private ArrayList<WeightedSet> weightedSets;
     private double oneRepetitionMax;
 

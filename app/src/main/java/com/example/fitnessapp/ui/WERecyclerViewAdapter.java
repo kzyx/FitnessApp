@@ -13,8 +13,6 @@ import com.example.fitnessapp.model.WeightedExerciseInstance;
 import com.example.fitnessapp.model.WeightedSet;
 
 public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
-
-    //List<WeightedSet> list;
     WeightedExerciseInstance wei;
     Context context;
     boolean selected;
@@ -76,10 +74,6 @@ public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
        // int position = list.indexOf(weightedSet);
         int removedIndex = wei.removeSet(weightedSet);
         notifyItemRemoved(removedIndex);
-    }
-
-    public void setSelected(WEViewHolder holder) {
-        holder.cv.setCardBackgroundColor(Color.parseColor("#000000"));
     }
 
     public void setSelected() {

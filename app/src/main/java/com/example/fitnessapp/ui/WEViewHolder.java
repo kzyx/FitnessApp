@@ -19,10 +19,10 @@ public class WEViewHolder extends RecyclerView.ViewHolder {
 
     WEViewHolder(View itemView) {
         super(itemView);
-        cv = (CardView) itemView.findViewById(R.id.cardView);
+        cv = itemView.findViewById(R.id.cardView);
         relativeLayout = itemView.findViewById(R.id.weightRepLayout);
         listingNum = itemView.findViewById(R.id.listingNum);
-        weight = (TextView) itemView.findViewById(R.id.weightText);
-        repetition = (TextView) itemView.findViewById(R.id.repetitionText);
+        weight = itemView.findViewById(R.id.weightText);
+        repetition = itemView.findViewById(R.id.repetitionText);
     }
 }

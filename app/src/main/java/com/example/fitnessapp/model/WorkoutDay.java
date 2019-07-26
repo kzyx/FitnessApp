@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class WorkoutDay implements Comparable<WorkoutDay> {
-
     private LocalDate date;
     private List<WeightedExerciseInstance> exerciseInstances;
 

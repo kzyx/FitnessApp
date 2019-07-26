@@ -4,7 +4,6 @@ import java.sql.Time;
 import java.util.Calendar;
 
 public abstract class ExerciseInstance {
-
     private Exercise exercise;
     private Time creationTime;
     private Time lastModifiedTime;
