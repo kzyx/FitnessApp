@@ -5,7 +5,7 @@
     android:id="@+id/relativelayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DayActivity">
+    tools:context=".ui.DayActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
@@ -19,13 +19,13 @@
         app:menu="@menu/bottom_nav_menu" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/exerciseView"
-        android:layout_width="398dp"
-        android:layout_height="554dp"
+        android:id="@+id/dayView"
+        android:layout_width="379dp"
+        android:layout_height="537dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="123dp"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="43dp" />
 

@@ -1,26 +1,29 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.ui;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.example.fitnessapp.R;
+import com.example.fitnessapp.model.WeightedExerciseInstance;
+import com.example.fitnessapp.model.WeightedSet;
 
 public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
 
     //List<WeightedSet> list;
     WeightedExerciseInstance wei;
     Context context;
+    boolean selected;
 
 
     public WERecyclerViewAdapter(WeightedExerciseInstance wei, Context context) {
         this.wei = wei;
         this.context = context;
+        selected = false;
     }
 
 
@@ -43,7 +46,11 @@ public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
         holder.weight.setText(String.format("%.2f", w));
         holder.repetition.setText(Integer.toString(wei.get(position).getRepetitions()));
 
-        //animate(holder);
+        if(selected) {
+            holder.itemView.setBackgroundColor(Color.parseColor("#00FA9A"));
+        } else {
+            holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+        }
 
     }
 
@@ -69,6 +76,20 @@ public class WERecyclerViewAdapter extends RecyclerView.Adapter<WEViewHolder> {
        // int position = list.indexOf(weightedSet);
         int removedIndex = wei.removeSet(weightedSet);
         notifyItemRemoved(removedIndex);
+    }
+
+    public void setSelected(WEViewHolder holder) {
+        holder.cv.setCardBackgroundColor(Color.parseColor("#000000"));
+    }
+
+    public void setSelected() {
+        selected = true;
+        notifyDataSetChanged();
+    }
+
+    public void setDeselected() {
+        selected = false;
+        notifyDataSetChanged();
     }
 
 

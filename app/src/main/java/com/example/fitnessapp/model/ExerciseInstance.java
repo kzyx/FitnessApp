@@ -1,4 +1,4 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.model;
 
 import java.sql.Time;
 import java.util.Calendar;
@@ -17,6 +17,10 @@ public abstract class ExerciseInstance {
 
     public void setLastModifiedTime(Time lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
+    }
+
+    public Time getLastModifiedTime() {
+        return lastModifiedTime;
     }
 
     public Exercise getExercise() {

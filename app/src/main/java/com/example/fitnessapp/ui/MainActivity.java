@@ -1,11 +1,11 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import java.util.concurrent.TimeUnit;
+import com.example.fitnessapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,11 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        Intent intent = new Intent(this, TMActivity.class);
-//        Bundle b = new Bundle();
-//        b.putInt("type", 0); //Your id
-//        intent.putExtras(b); //Put your id to your next Intent
         Intent intent = new Intent(this, DayActivity.class);
         startActivity(intent);
     }

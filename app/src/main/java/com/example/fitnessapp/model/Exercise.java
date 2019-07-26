@@ -1,14 +1,15 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.model;
 
 public class Exercise implements Comparable<Exercise> {
     private String name;
-    private ExerciseEnum.Muscle targetedMuscle;
+    private ExerciseEnum.Muscle muscle;
     private ExerciseType exerciseType;
 
-    public Exercise(String name, ExerciseEnum.Muscle targetedMuscle,
+    public Exercise(String name, ExerciseEnum.Muscle muscle,
                     ExerciseType exerciseType, ExerciseMap exerciseMap) {
         this.name = name;
-        this.targetedMuscle = targetedMuscle;
+        this.muscle = muscle;
+        this.exerciseType = exerciseType;
         exerciseMap.addExercise(this);
     }
 
@@ -16,8 +17,8 @@ public class Exercise implements Comparable<Exercise> {
         return name;
     }
 
-    public ExerciseEnum.Muscle getTargetedMuscle() {
-        return targetedMuscle;
+    public ExerciseEnum.Muscle getMuscle() {
+        return muscle;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class Exercise implements Comparable<Exercise> {
         if (!(o instanceof Exercise)) return false;
         Exercise exercise = (Exercise) o;
         return name.equals(exercise.name) &&
-                targetedMuscle == exercise.targetedMuscle &&
+                muscle == exercise.muscle &&
                 exerciseType == exercise.exerciseType;
     }
 

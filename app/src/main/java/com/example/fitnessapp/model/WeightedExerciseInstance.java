@@ -1,4 +1,4 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,11 +7,9 @@ public class WeightedExerciseInstance extends ExerciseInstance {
 
     private ArrayList<WeightedSet> weightedSets;
     private double oneRepetitionMax;
-    private Exercise exercise;
 
     public WeightedExerciseInstance(Exercise exercise) {
         super(exercise);
-        this.exercise = exercise;
         weightedSets = new ArrayList<>();
     }
 
@@ -43,36 +41,25 @@ public class WeightedExerciseInstance extends ExerciseInstance {
         int index =  weightedSets.indexOf(w);
         weightedSets.remove(w);
         double removedOneRepetitionMax = w.getOneRepetitionMax();
-        //TODO: FINISH
-//        if (oneRepetitionMax = removedOneRepetitionMax) {
-//            int counter = 0;
-//            int max = 0;
-//            for (WeightedSet ws : weightedSets) {
-//                if (ws.getOneRepetitionMax() == removedOneRepetitionMax) {
-//
-//                } else if (ws.getOneRepetitionMax() >= removedOneRepetitionMax) {
-//
-//                }
-//            }
-//        }
+        findAndUpdateOneRepetitionMax();
         return index;
     }
 
     public void remove(int i) {
         double removedOneRepetitionMax = weightedSets.get(i).getOneRepetitionMax();
         weightedSets.remove(i);
-        //TODO: FINISH
-//        if (oneRepetitionMax = removedOneRepetitionMax) {
-//            int counter = 0;
-//            int max = 0;
-//            for (WeightedSet ws : weightedSets) {
-//                if (ws.getOneRepetitionMax() == removedOneRepetitionMax) {
-//
-//                } else if (ws.getOneRepetitionMax() >= removedOneRepetitionMax) {
-//
-//                }
-//            }
-//        }
+        findAndUpdateOneRepetitionMax();
+    }
+
+    private void findAndUpdateOneRepetitionMax() {
+        double max = Double.MIN_VALUE;
+        for (WeightedSet ws : weightedSets) {
+            double currentOneRepetitionMax = ws.getOneRepetitionMax();
+            if (max < currentOneRepetitionMax) {
+                max = currentOneRepetitionMax;
+            }
+        }
+        oneRepetitionMax = max;
     }
 
     public void removeLastSet() {
@@ -85,7 +72,7 @@ public class WeightedExerciseInstance extends ExerciseInstance {
     }
 
     public Exercise getExercise() {
-        return exercise;
+        return super.getExercise();
     }
 
 }

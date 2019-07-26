@@ -6,11 +6,13 @@
     android:layout_marginBottom="0dp"
     android:clickable="true"
     android:focusable="true"
+    app:cardBackgroundColor="@color/white"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="1dp"
     app:cardElevation="1dp">
 
     <RelativeLayout
+        android:id="@+id/weightRepLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="1dp">

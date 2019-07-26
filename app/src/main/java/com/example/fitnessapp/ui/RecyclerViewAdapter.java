@@ -1,4 +1,4 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.ui;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.fitnessapp.R;
+
 /**
  * Created by JUNED on 6/10/2016.
  */

@@ -1,8 +1,7 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -10,11 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fitnessapp.R;
+import com.example.fitnessapp.model.Exercise;
+import com.example.fitnessapp.model.ExerciseEnum;
+import com.example.fitnessapp.model.ExerciseMap;
+import com.example.fitnessapp.model.WeightedExerciseInstance;
+import com.example.fitnessapp.model.WeightedSet;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.List;
-
-import static com.example.fitnessapp.ExerciseType.WEIGHTED;
+import static com.example.fitnessapp.model.ExerciseType.WEIGHTED;
 
 public class WEModify extends AppCompatActivity {
 
@@ -56,8 +59,6 @@ public class WEModify extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),SendPhotos.class);
-//                startActivity(intent);
                 try {
                     double weight = Double.parseDouble(weightInput.getEditText().getText().toString());
                     int rep = Integer.parseInt(repetitionInput.getEditText().getText().toString());
