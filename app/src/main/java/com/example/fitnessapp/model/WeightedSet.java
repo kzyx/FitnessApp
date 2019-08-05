@@ -6,13 +6,15 @@ public class WeightedSet {
     private int repetitions;
     private double oneRepetitionMax;
 
+
     public WeightedSet(Exercise exercise, double weight, int repetitions) {
         this.exercise = exercise;
         this.weight = weight;
         this.repetitions = repetitions;
+        calculateOneRepetitionMax();
     }
 
-    // Uses epley formula
+    // Uses Epley formula to calculate one repetition max
     private void calculateOneRepetitionMax() {
         oneRepetitionMax = weight * (1.0 + repetitions / ((double) 30));
     }

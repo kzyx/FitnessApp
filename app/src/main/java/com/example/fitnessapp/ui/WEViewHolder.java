@@ -16,6 +16,8 @@ public class WEViewHolder extends RecyclerView.ViewHolder {
     TextView weight;
     TextView repetition;
     TextView listingNum;
+    TextView oneRepetitionMax;
+
 
     WEViewHolder(View itemView) {
         super(itemView);
@@ -24,5 +26,6 @@ public class WEViewHolder extends RecyclerView.ViewHolder {
         listingNum = itemView.findViewById(R.id.listingNum);
         weight = itemView.findViewById(R.id.weightText);
         repetition = itemView.findViewById(R.id.repetitionText);
+        oneRepetitionMax = itemView.findViewById(R.id.oneRepetitionMaxText);
     }
 }

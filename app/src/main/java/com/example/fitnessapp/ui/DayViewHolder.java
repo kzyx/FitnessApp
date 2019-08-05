@@ -9,17 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnessapp.R;
 
 public class DayViewHolder extends RecyclerView.ViewHolder {
-
     CardView cv;
     TextView exerciseName;
     TextView muscle;
+    TextView oneRepetitionMax;
     RecyclerView dayView;
 
     DayViewHolder(View itemView) {
         super(itemView);
-        cv = (CardView) itemView.findViewById(R.id.cardView);
+        cv = itemView.findViewById(R.id.cardView);
         dayView = itemView.findViewById(R.id.dayView);
-        exerciseName = (TextView) itemView.findViewById(R.id.exerciseNameText);
-        muscle = (TextView) itemView.findViewById(R.id.muscleText);
+        exerciseName = itemView.findViewById(R.id.exerciseNameText);
+        muscle = itemView.findViewById(R.id.muscleText);
+        oneRepetitionMax = itemView.findViewById(R.id.oneRepetitionMaxText);
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitnessApp</string>
+    <string name="app_name">Yafia</string>
     <string name="title_activity_day">DayActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

@@ -23,8 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="30dp"
             android:text="EXERCISENAME"
             android:textSize="20dp" />
 
@@ -32,15 +32,34 @@
             android:id="@+id/muscleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="125dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@+id/exerciseNameText"
-            android:text="muscleTargeted"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="30dp"
+            android:text="MUSCLEGROUP"
             android:textSize="15dp" />
 
+        <TextView
+            android:id="@+id/oneRepetitionMaxFixed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="60dp"
+            android:text="ONE REP MAX:"
+            android:textSize="15dp" />
 
+        <TextView
+            android:id="@+id/oneRepetitionMaxText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-55dp"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@+id/oneRepetitionMaxFixed"
+            android:text="999"
+            android:textSize="15dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dayView"
@@ -48,9 +67,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="37dp"
-            />
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="0dp" />
     </RelativeLayout>
 
 

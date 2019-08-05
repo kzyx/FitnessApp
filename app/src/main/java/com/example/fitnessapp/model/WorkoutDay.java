@@ -9,6 +9,7 @@ public class WorkoutDay implements Comparable<WorkoutDay> {
     private LocalDate date;
     private List<WeightedExerciseInstance> exerciseInstances;
 
+
     public WorkoutDay(LocalDate date) {
         this.date = date;
         this.exerciseInstances = new ArrayList<>();
