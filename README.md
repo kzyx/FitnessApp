@@ -1,14 +1,10 @@
 <a href="https://imgur.com/aFgRRDt"><img src="https://imgur.com/aFgRRDt" title="Yafia" alt="Yafia"></a>
 
-# YAFIA 
-> (Yet Another Fitness App)
-
-> Workout Tracker
-
-> :D
-
+# Yafia
+(**Y**et **A**nother **Fi**tness **A**pp)
+##### A compact workout tracker for Android
 ---
-
+---
 ## Installation
 
 
@@ -17,11 +13,11 @@
 ## Features
 
 - Compact design
-- Includes exercises that target a variety of muscle groups
+- Includes exercises that target a variety of muscle groups, e.g. abs, chest, biceps
 - Ability to add, remove exercises
 - Ability to modify different exercises without changing views
 - Ability to add, remove sets
-- Displays one repetition max based on best set for every weighted exercise (calculated using Epley formula)
+- For every weighted exercise, uses the Epley formula to calculate the one repetition max based on the best weighted set
 - Can recall and modify workouts done in the past
 
 <img src="http://g.recordit.co/fcWfbVvosu.gif" width="300">
