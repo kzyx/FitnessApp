@@ -16,7 +16,7 @@
 
 ## Features
 
-![Recordit GIF](http://g.recordit.co/fcWfbVvosu)
+![Recordit GIF](https://recordit.co/fcWfbVvosu)
 
 
 ---
