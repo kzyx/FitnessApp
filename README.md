@@ -1,12 +1,12 @@
-<a href="https://imgur.com/aFgRRDt"><img src="https://imgur.com/aFgRRDt" title="Yafia" alt="Yafia"></a>
+<!--<a href="https://imgur.com/aFgRRDt"><img src="https://imgur.com/aFgRRDt" title="Yafia" alt="Yafia"></a>-->
 
 # Yafia
 (**Y**et **A**nother **Fi**tness **A**pp)
 ##### A compact workout tracker for Android
 ---
----
 ## Installation
-
+- Simply click here to [download](app/release/app-release.apk) the APK
+- You may need to change your phone settings to allow APK download from unknown sources
 
 ---
 
