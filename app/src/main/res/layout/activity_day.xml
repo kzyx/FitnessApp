@@ -42,18 +42,18 @@
 
     <Button
         android:id="@+id/addSetButton"
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="125dp"
-        android:theme="@style/PrimaryFlatButton"
-        android:text="Add Set" />
+        android:layout_toStartOf="@+id/removeSetButton"
+        android:layout_marginEnd="10dp"
+        android:text="Add Set"
+        android:theme="@style/PrimaryFlatButton" />
 
     <Button
         android:id="@+id/removeSetButton"
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
