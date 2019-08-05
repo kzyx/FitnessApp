@@ -20,6 +20,6 @@
 - For every weighted exercise, uses the Epley formula to calculate the one repetition max based on the best weighted set
 - Can recall and modify workouts done in the past
 
-<img src="http://g.recordit.co/fcWfbVvosu.gif" width="300">
+<img src="http://g.recordit.co/cuOd0swvwF.gif" width="300">
 
 ---
