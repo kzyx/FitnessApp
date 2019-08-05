@@ -16,7 +16,13 @@
 
 ## Features
 
-![Recordit GIF](http://g.recordit.co/fcWfbVvosu.gif)
+- Compact design
+- Includes exercises that target a variety of muscle groups
+- Ability to add, remove exercises
+- Ability to modify different exercises without changing views
+- Ability to add, remove sets
+- Displays one repetition max based on best set for every weighted exercise (calculated using Epley formula)
 
+<img src="http://g.recordit.co/fcWfbVvosu.gif" width="300">
 
 ---
